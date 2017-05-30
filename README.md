@@ -1,12 +1,13 @@
 # Plugin Name
-Contributors: davidjlaietta
-Donate link: https://davidlaietta.com
-Tags: custom post type, cpt, taxonomy
-Requires at least: 4.7.5
-Tested up to: 4.7.5
-Stable tag: 4.7.5
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+__Contributors:__ davidjlaietta
+__Website:__ https://davidlaietta.com
+__Tags:__ custom post type, cpt, taxonomy
+__Requires at least:__ 4.7.5
+__Tested up to:__ 4.7.5
+__Stable tag:__ 4.7.5
+__License:__ GPLv3 or later
+__License URI:__ http://www.gnu.org/licenses/gpl-3.0.html
 
 This plugin adds a Resource custom post type, along with single and archive views, and options for display 
 
