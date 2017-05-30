@@ -1,4 +1,4 @@
-# Plugin Name
+=== Plugin Name ===
 Contributors: davidjlaietta
 Donate link: https://davidlaietta.com
 Tags: custom post type, cpt, taxonomy
@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 This plugin adds a Resource custom post type, along with single and archive views, and options for display 
 
-## Installation
+== Installation ==
 
 This section describes how to install the plugin and get it working.
 
@@ -20,7 +20,7 @@ e.g.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 
-## Changelog
+== Changelog ==
 
-### 0.1
+= 0.1 =
 * First version of plugin
