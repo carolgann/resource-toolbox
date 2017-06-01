@@ -214,4 +214,30 @@ class Resource_Toolbox_Public {
 
 	}
 
+
+	/**
+	 * Adds extra content before/after the post for single resources
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	public function resource_content( $content ) {
+
+		global $post;
+
+		if ( ! is_singular( 'resource_toolbox' ) || 'resource_toolbox' !== $post->post_type ) {
+			return $content;
+		}
+
+		ob_start();
+
+		do_action( 'resource_content_start' );
+
+		// @todo resource content
+
+		do_action( 'resource_content_end' );
+
+		return apply_filters( 'resource_toolbox_single_resource_content', ob_get_clean(), $post );
+	}
+
 }

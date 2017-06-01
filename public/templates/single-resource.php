@@ -9,3 +9,8 @@
  * @author     David Laietta <david@orangeblossommedia.com>
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
+
+global $post;
+?>
+
+post content here
