@@ -14,3 +14,6 @@ global $post;
 
 // @todo Resource Content
 
+$settings = get_option( 'resource_toolbox_single_resource_settings' );
+
+var_dump($settings);
