@@ -7,6 +7,25 @@
  * @author     David Laietta <david@orangeblossommedia.com>
  */
 class Resource_Meta_Box {
+
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
+
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
+
     private $screens = array(
         'resource_toolbox',
     );
@@ -54,11 +73,19 @@ class Resource_Meta_Box {
     );
 
     /**
-     * Class construct method. Adds actions to their respective WordPress hooks.
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string    $plugin_name       The name of the plugin.
+     * @param      string    $version    The version of this plugin.
      */
-    public function __construct() {
+    public function __construct( $plugin_name, $version ) {
+
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
         add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
         add_action( 'save_post', array( $this, 'save_post' ) );
+
     }
 
     /**
@@ -69,7 +96,7 @@ class Resource_Meta_Box {
         foreach ( $this->screens as $screen ) {
             add_meta_box(
                 'resource-information',
-                __( 'Resource Information', '$this->plugin_name' ),
+                __( 'Resource Information', $this->plugin_name ),
                 array( $this, 'add_meta_box_callback' ),
                 $screen,
                 'advanced',

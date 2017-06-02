@@ -177,7 +177,8 @@ class Resource_Toolbox {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'template_include', $plugin_public, 'template_loader' );
+		// $this->loader->add_action( 'template_include', $plugin_public, 'load_template' );
+		$this->loader->add_filter( 'the_content', $plugin_public, 'resource_content' );
 
 	}
 

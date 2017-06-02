@@ -11,6 +11,5 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 
 global $post;
-?>
 
-post content here
+// @todo Resource Content

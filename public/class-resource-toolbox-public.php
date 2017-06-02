@@ -117,7 +117,7 @@ class Resource_Toolbox_Public {
 	 * @param 	string	$default_path			Default path to template files
 	 * @return 	string 							Path to the template file
 	 */
-	function locate_template( $template_name, $template_path = '', $default_path = '' ) {
+	public function locate_template( $template_name, $template_path = '', $default_path = '' ) {
 
 		// Set variable to search in resource-toolbox folder of theme
 		if ( ! $template_path ) {
@@ -159,18 +159,18 @@ class Resource_Toolbox_Public {
 	 * @param string 	$string $template_path	Path to templates.
 	 * @param string	$default_path			Default path to template files.
 	 */
-	function get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {
+	public function get_template( $template_name, $args = array(), $tempate_path = '', $default_path = '' ) {
 
-		if ( is_array( $args ) && isset( $args ) ) :
+		if ( is_array( $args ) && isset( $args ) ) {
 			extract( $args );
-		endif;
+		}
 
-		$template_file = locate_template( $template_name, $tempate_path, $default_path );
+		$template_file = $this->locate_template( $template_name, $tempate_path, $default_path );
 
-		if ( ! file_exists( $template_file ) ) :
+		if ( ! file_exists( $template_file ) ) {
 			_doing_it_wrong( __FUNCTION__, sprintf( '<code>%s</code> does not exist.', $template_file ), '1.0.0' );
 			return;
-		endif;
+		}
 
 		include $template_file;
 
@@ -191,22 +191,18 @@ class Resource_Toolbox_Public {
 	 * @param	string	$template	Template file that is being loaded.
 	 * @return	string				Template file that should be loaded.
 	 */
-	function template_loader( $template ) {
+	public function load_template( $template ) {
 
 		$find = array();
 
 		$file = '';
 
 		if ( is_singular( 'resource_toolbox' ) ) {
-
 			$file = 'single-resource.php';
-
 		}
 
 		if ( file_exists( $this->locate_template( $file ) ) ) {
-
 			$template = $this->locate_template( $file );
-
 		}
 
 
@@ -233,11 +229,41 @@ class Resource_Toolbox_Public {
 
 		do_action( 'resource_content_start' );
 
-		// @todo resource content
+		$this->get_resource_template_part( 'single-resource' );
 
 		do_action( 'resource_content_end' );
 
 		return apply_filters( 'resource_toolbox_single_resource_content', ob_get_clean(), $post );
+
+	}
+
+
+	/**
+	 * Gets template part (for templates in loops).
+	 *
+	 * @since 1.0.0
+	 * @param string      $slug
+	 * @param string      $name (default: '')
+	 * @param string      $template_path (default: 'single-resource')
+	 * @param string|bool $default_path (default: '') False to not load a default
+	 */
+	public function get_resource_template_part( $slug, $name = '' ) {
+
+		$template = '';
+
+		if ( $name ) {
+			$template = $this->locate_template( "{$slug}-{$name}.php" );
+		}
+
+		// If template file doesn't exist, look in yourtheme/slug.php and yourtheme/job_manager/slug.php
+		if ( ! $template ) {
+			$template = $this->locate_template( "{$slug}.php" );
+		}
+
+		if ( $template ) {
+			load_template( $template, false );
+		}
+
 	}
 
 }
