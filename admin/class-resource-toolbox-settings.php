@@ -91,8 +91,8 @@ class Resource_Toolbox_Settings {
     static function default_single_resource_settings() {
 
         $defaults = array(
-            'enable_excerpts'  => '1',
-            'enable_discussion'  => '1'
+            'enable_excerpts'  => '0',
+            'enable_discussion'  => '0'
         );
 
         update_option( 'resource_toolbox_single_resource_settings', $defaults );
