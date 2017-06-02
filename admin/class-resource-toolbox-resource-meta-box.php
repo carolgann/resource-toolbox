@@ -102,8 +102,8 @@ class Resource_Meta_Box {
                 __( 'Resource Information', $this->plugin_name ),
                 array( $this, 'add_meta_box_callback' ),
                 $screen,
-                'advanced',
-                'default'
+                'normal',
+                'high'
             );
 
         }

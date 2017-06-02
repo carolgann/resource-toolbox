@@ -110,6 +110,24 @@ class Resource_Toolbox_Admin {
      */
     public function create_custom_post_type_resources() {
 
+        // Get options to determine supported features
+        $resource_options = get_option( 'resource_toolbox_single_resource_settings' );
+
+        $supports = array( 'title',
+            'editor',
+            'thumbnail',
+            'revisions',
+            'author'
+            );
+
+        if ( isset( $resource_options['enable_excerpts'] ) && $resource_options['enable_excerpts'] === '1' ) {
+            $supports[] = 'excerpt';
+        }
+
+        if ( isset( $resource_options['enable_discussion'] ) && $resource_options['enable_discussion'] === '1' ) {
+            $supports[] = 'comments';
+        }
+
         // Register Custom Post Type
 
         $labels = array(
@@ -144,7 +162,7 @@ class Resource_Toolbox_Admin {
             'label'                 => __( 'Resource', $this->plugin_name ),
             'description'           => __( 'Resources', $this->plugin_name ),
             'labels'                => $labels,
-            'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'author', 'excerpt' ),
+            'supports'              => $supports,
             'taxonomies'            => array( 'category', 'post_tag' ),
             'hierarchical'          => true,
             'public'                => true,
