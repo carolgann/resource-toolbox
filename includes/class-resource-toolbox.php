@@ -174,6 +174,8 @@ class Resource_Toolbox {
         $this->loader->add_action( 'admin_init', $plugin_settings, 'initialize_general_settings' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'initialize_single_resource_settings' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'initialize_resource_loop_settings' );
+        // $this->loader->add_action( 'activate_resource_toolbox', $plugin_settings, 'default_resource_loop_settings' );
+
 
 	}
 

@@ -31,6 +31,11 @@ class Resource_Toolbox_Activator {
 	 */
 	public static function activate() {
 
+        require_once plugin_dir_path( __DIR__ ) . 'admin/class-resource-toolbox-settings.php';
+        Resource_Toolbox_Settings::default_general_settings();
+        Resource_Toolbox_Settings::default_single_resource_settings();
+        Resource_Toolbox_Settings::default_resource_loop_settings();
+
 	}
 
 }

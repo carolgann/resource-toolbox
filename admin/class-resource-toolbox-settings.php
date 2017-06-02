@@ -74,12 +74,12 @@ class Resource_Toolbox_Settings {
      *
      * @return array
      */
-    public function default_general_settings() {
+    static function default_general_settings() {
 
         $defaults = array(
         );
 
-        return  $defaults;
+        update_option( 'resource_toolbox_general_settings', $defaults );
 
     }
 
@@ -88,14 +88,14 @@ class Resource_Toolbox_Settings {
      *
      * @return array
      */
-    public function default_single_resource_settings() {
+    static function default_single_resource_settings() {
 
         $defaults = array(
-            'enable_excerpts'  => '',
-            'enable_discussion'  => '',
+            'enable_excerpts'  => '1',
+            'enable_discussion'  => '1'
         );
 
-        return  $defaults;
+        update_option( 'resource_toolbox_single_resource_settings', $defaults );
 
     }
 
@@ -104,12 +104,13 @@ class Resource_Toolbox_Settings {
      *
      * @return array
      */
-    public function default_resource_loop_settings() {
+    static function default_resource_loop_settings() {
 
         $defaults = array(
+            'images_in_loop'  => '1',
         );
 
-        return  $defaults;
+        update_option( 'resource_toolbox_resource_loop_settings', $defaults );
 
     }
 
@@ -242,11 +243,6 @@ class Resource_Toolbox_Settings {
      */
     public function initialize_general_settings() {
 
-        if( false == get_option( 'resource_toolbox_general_settings' ) ) {
-            $default_array = $this->default_general_settings();
-            update_option( 'resource_toolbox_general_settings', $default_array );
-        }
-
         add_settings_section(
             'general_settings_section',                         // ID used to identify this section and with which to register options
             __( 'General Settings', $this->plugin_name ),       // Title to be displayed on the administration page
@@ -285,11 +281,6 @@ class Resource_Toolbox_Settings {
      * This function is registered with the 'admin_init' hook.
      */
     public function initialize_single_resource_settings() {
-
-        if( false == get_option( 'resource_toolbox_single_resource_settings' ) ) {
-            $default_array = $this->default_single_resource_settings();
-            update_option( 'resource_toolbox_single_resource_settings', $default_array );
-        }
 
         add_settings_section(
             'single_resource_settings_section',                         // ID used to identify this section and with which to register options
@@ -330,11 +321,6 @@ class Resource_Toolbox_Settings {
      */
     public function initialize_resource_loop_settings() {
 
-        if( false == get_option( 'resource_toolbox_resource_loop_settings' ) ) {
-            $default_array = $this->default_resource_loop_settings();
-            update_option( 'resource_toolbox_resource_loop_settings', $default_array );
-        }
-
         add_settings_section(
             'resource_loop_settings_section',                         // ID used to identify this section and with which to register options
             __( 'Resource Loop Settings', $this->plugin_name ),       // Title to be displayed on the administration page
@@ -348,7 +334,7 @@ class Resource_Toolbox_Settings {
             array( $this, 'checkbox_input_callback'),
             'resource_toolbox_resource_loop_settings',
             'resource_loop_settings_section',
-            array( 'label_for' => 'images_in_loop', 'option_group' => 'resource_toolbox_resource_loop_settings', 'option_id' => 'images_in_loop', 'option_description' => 'Should retweets be excluded?' )
+            array( 'label_for' => 'images_in_loop', 'option_group' => 'resource_toolbox_resource_loop_settings', 'option_id' => 'images_in_loop', 'option_description' => 'Display Images' )
         );
 
         register_setting(
@@ -367,13 +353,14 @@ class Resource_Toolbox_Settings {
         // Get arguments from setting
         $option_group = $text_input['option_group'];
         $option_id = $text_input['option_id'];
-        $option_name = $option_group . '[' . $option_id . ']';
+        $option_name = "{$option_group}[{$option_id}]";
 
         // Get existing option from database
         $options = get_option( $option_group );
+        $option_value = isset( $options[$option_id] ) ? $options[$option_id] : '0';
 
         // Render the output
-        echo '<input type="text" id="' . $option_id . '" name="' . $option_name . '" value="' . $options[$option_id] . '" />';
+        echo "<input type='text' id='{$option_id}' name='{$option_name}' value='{$option_value}' />";
 
     }
 
@@ -382,16 +369,18 @@ class Resource_Toolbox_Settings {
         // Get arguments from setting
         $option_group = $checkbox_input['option_group'];
         $option_id = $checkbox_input['option_id'];
-        $option_name = $option_group . '[' . $option_id . ']';
+        $option_name = "{$option_group}[{$option_id}]";
         $option_description = $checkbox_input['option_description'];
 
         // Get existing option from database
         $options = get_option( $option_group );
+        $option_value = isset( $options[$option_id] ) ? $options[$option_id] : "";
 
         // Render the output
         $input = '';
-        $input .= '<input type="checkbox" id="' . $option_id . '" name="' . $option_name . '" value="1" ' . checked( isset($options[$option_id]), 1, false ) . ' />';
-        $input .= '<label for="' . $option_id . '">' . $option_description . '</label>';
+        $input .= "<input type='checkbox' id='{$option_id}' name='{$option_name}' value='1' " . checked( $option_value, 1, false ) . " />";
+        $input .= "<label for='{$option_id}'>{$option_description}</label>";
+        var_dump($option_value);
 
         echo $input;
 
