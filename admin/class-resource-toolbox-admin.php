@@ -163,7 +163,7 @@ class Resource_Toolbox_Admin {
             'description'           => __( 'Resources', $this->plugin_name ),
             'labels'                => $labels,
             'supports'              => $supports,
-            'taxonomies'            => array( 'category', 'post_tag' ),
+            'taxonomies'            => array( 'post_tag' ),
             'hierarchical'          => true,
             'public'                => true,
             'show_ui'               => true,
@@ -181,6 +181,47 @@ class Resource_Toolbox_Admin {
         );
 
         register_post_type( 'resource_toolbox', $args );
+
+    }
+
+    /**
+     * Create a Custom Taxonomy to manage resource categories
+     */
+    function create_custom_taxonomy_resource_category() {
+
+        $labels = array(
+            'name'                       => _x( 'Resource Categories', 'Taxonomy General Name', $this->plugin_name ),
+            'singular_name'              => _x( 'Resource Category', 'Taxonomy Singular Name', $this->plugin_name ),
+            'menu_name'                  => __( 'Resource Category', $this->plugin_name ),
+            'all_items'                  => __( 'All Items', $this->plugin_name ),
+            'parent_item'                => __( 'Parent Item', $this->plugin_name ),
+            'parent_item_colon'          => __( 'Parent Item:', $this->plugin_name ),
+            'new_item_name'              => __( 'New Item Name', $this->plugin_name ),
+            'add_new_item'               => __( 'Add New Item', $this->plugin_name ),
+            'edit_item'                  => __( 'Edit Item', $this->plugin_name ),
+            'update_item'                => __( 'Update Item', $this->plugin_name ),
+            'view_item'                  => __( 'View Item', $this->plugin_name ),
+            'separate_items_with_commas' => __( 'Separate items with commas', $this->plugin_name ),
+            'add_or_remove_items'        => __( 'Add or remove items', $this->plugin_name ),
+            'choose_from_most_used'      => __( 'Choose from the most used', $this->plugin_name ),
+            'popular_items'              => __( 'Popular Items', $this->plugin_name ),
+            'search_items'               => __( 'Search Items', $this->plugin_name ),
+            'not_found'                  => __( 'Not Found', $this->plugin_name ),
+            'no_terms'                   => __( 'No items', $this->plugin_name ),
+            'items_list'                 => __( 'Items list', $this->plugin_name ),
+            'items_list_navigation'      => __( 'Items list navigation', $this->plugin_name ),
+        );
+        $args = array(
+            'labels'                     => $labels,
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+        );
+
+        register_taxonomy( 'resource_category', array( 'resource_toolbox' ), $args );
 
     }
 

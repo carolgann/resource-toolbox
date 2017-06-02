@@ -164,6 +164,7 @@ class Resource_Toolbox {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'create_custom_post_type_resources' );
+		$this->loader->add_action( 'init', $plugin_admin, 'create_custom_taxonomy_resource_category' );
 
 		$plugin_metaboxes = new Resource_Meta_Box( $this->get_plugin_name(), $this->get_version() );
 
