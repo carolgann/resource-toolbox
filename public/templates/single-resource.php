@@ -24,7 +24,7 @@ echo '<div class="resource-meta">';
     // Display pricing of resource
     if ( isset( $resource_data ) && null !== $resource_data['resource_meta']['resource_information_resource-url'] ) {
         $url = esc_url( $resource_data['resource_meta']['resource_information_resource-url'][0], array( 'http', 'https' ) );
-        echo "<div class='resource-url'><strong>Website:</strong> <a href='{$url}' rel='nofollow'>{$url}</a>";
+        echo "<div class='resource-url'><strong>Website:</strong> <a href='{$url}' rel='nofollow'>{$url}</a></div>";
     }
 
     echo '<div class="resource-terms">';
@@ -50,4 +50,7 @@ echo '<div class="resource-meta">';
 echo '</div>'; // <!-- .resource-meta -->
 
 // Display content description of resource
-echo get_the_content();
+echo '<div class="resource-content">';
+    echo get_the_content();
+echo '</div>'; // <!-- .resource-content -->
+

@@ -2,3 +2,31 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.resource-meta {
+    margin-bottom: 1em;
+}
+
+.resource-cost {
+
+}
+
+.resource-terms {
+    margin: 1em auto;
+}
+
+.resource-terms .resource-term {
+    padding: 0 .25em;
+    border-radius: .25em;
+    border: 1px solid;
+    display: inline-block;
+    margin-right: .5em;
+    text-decoration: none;
+}
+
+.resource-terms .resource-term:hover,
+.resource-terms .resource-term:focus,
+.resource-terms .resource-term:active {
+    text-decoration: none;
+    border: 1px solid;
+}
