@@ -211,8 +211,26 @@ class Resource_Toolbox_Public {
 
 		if ( ! is_singular( 'resource_toolbox' ) || 'resource_toolbox' !== $post->post_type ) {
 			return $content;
+		} elseif ( is_singular( 'resource_toolbox' ) || 'resource_toolbox' === $post->post_type ) {
+			return $this->resource_single_content();
+		} elseif ( is_post_type_archive( 'resource_toolbox' ) ) {
+			// return $this->resource_single_content();
+			return "archive";
+		} else {
+			return $content;
 		}
 
+	}
+
+	/**
+	 * Adds extra content before/after the post for single resources
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	public function resource_single_content() {
+
+		global $post;
 
 		ob_start();
 
