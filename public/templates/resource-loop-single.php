@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Resource Template
+ * Resource Loop Single Template
  *
- * This template can be overriden by copying this file to your-theme/resource-toolbox/single-resource.php
+ * This template can be overriden by copying this file to your-theme/resource-toolbox/resource-loop-single.php
  *
  * @package    Resource_Toolbox
  * @subpackage Resource_Toolbox/public
@@ -14,18 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 $resource_data = Resource_Toolbox_Public::get_single_resource_data();
 
 echo '<div class="resource-meta">';
-
-    // Display pricing of resource
-    if ( isset( $resource_data ) && '' !== $resource_data['resource_meta']['resource_information_resource-cost'][0] ) {
-        $cost = $resource_data['resource_meta']['resource_information_resource-cost'][0];
-        echo "<div class='resource-cost'><strong>Cost:</strong> {$cost}</div>";
-    }
-
-    // Display pricing of resource
-    if ( isset( $resource_data ) && '' !== $resource_data['resource_meta']['resource_information_resource-url'][0] ) {
-        $url = esc_url( $resource_data['resource_meta']['resource_information_resource-url'][0], array( 'http', 'https' ) );
-        echo "<div class='resource-url'><strong>Website:</strong> <a href='{$url}' rel='nofollow'>{$url}</a></div>";
-    }
 
     echo '<div class="resource-terms">';
 
@@ -49,8 +37,14 @@ echo '<div class="resource-meta">';
 
 echo '</div>'; // <!-- .resource-meta -->
 
-// Display content description of resource
-echo '<div class="resource-content">';
-    echo get_the_content();
-echo '</div>'; // <!-- .resource-content -->
+// Display description of resource
+echo '<div class="resource-description">';
+
+    // Display pricing of resource
+    if ( isset( $resource_data ) && '' !== $resource_data['resource_meta']['resource_information_resource-short-description'][0] ) {
+        $description = $resource_data['resource_meta']['resource_information_resource-short-description'][0];
+        echo "<div class='resource-description'>{$description}</div>";
+    }
+
+echo '</div>'; // <!-- .resource-description -->
 

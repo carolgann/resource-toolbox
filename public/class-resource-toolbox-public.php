@@ -209,13 +209,10 @@ class Resource_Toolbox_Public {
 
 		global $post;
 
-		if ( ! is_singular( 'resource_toolbox' ) || 'resource_toolbox' !== $post->post_type ) {
-			return $content;
-		} elseif ( is_singular( 'resource_toolbox' ) || 'resource_toolbox' === $post->post_type ) {
+		if ( is_singular( 'resource_toolbox' ) ) {
 			return $this->resource_single_content();
 		} elseif ( is_post_type_archive( 'resource_toolbox' ) ) {
-			// return $this->resource_single_content();
-			return "archive";
+			return $this->resource_loop_single_content();
 		} else {
 			return $content;
 		}
@@ -223,7 +220,7 @@ class Resource_Toolbox_Public {
 	}
 
 	/**
-	 * Adds extra content before/after the post for single resources
+	 * Modifies content for single resource views
 	 *
 	 * @param string $content
 	 * @return string
@@ -234,13 +231,34 @@ class Resource_Toolbox_Public {
 
 		ob_start();
 
-		do_action( 'resource_content_start' );
+		do_action( 'resource_single_content_start' );
 
 		$this->get_resource_template_part( 'single-resource' );
 
-		do_action( 'resource_content_end' );
+		do_action( 'resource_single_content_end' );
 
 		return apply_filters( 'resource_toolbox_single_resource_content', ob_get_clean(), $post );
+	}
+
+	/**
+	 * Modifies content for each resource in archive loops
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	public function resource_loop_single_content() {
+
+		global $post;
+
+		ob_start();
+
+		do_action( 'resource_loop_single_content_start' );
+
+		$this->get_resource_template_part( 'resource-loop-single' );
+
+		do_action( 'resource_loop_single_content_end' );
+
+		return apply_filters( 'resource_toolbox_resource_loop_single_content', ob_get_clean(), $post );
 	}
 
 }
