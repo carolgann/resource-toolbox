@@ -380,7 +380,6 @@ class Resource_Toolbox_Settings {
         $input = '';
         $input .= "<input type='checkbox' id='{$option_id}' name='{$option_name}' value='1' " . checked( $option_value, 1, false ) . " />";
         $input .= "<label for='{$option_id}'>{$option_description}</label>";
-        var_dump($option_value);
 
         echo $input;
 

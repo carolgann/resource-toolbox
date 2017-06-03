@@ -31,43 +31,23 @@ class Resource_Meta_Box {
     );
     private $fields = array(
         array(
-            'id' => 'resource-checkbox',
-            'label' => 'resource-checkbox',
+            'id' => 'free-resource',
+            'label' => 'Is this a free resource?',
             'type' => 'checkbox',
         ),
         array(
-            'id' => 'resource-radio',
-            'label' => 'resource-radio',
-            'type' => 'radio',
-            'options' => array(
-                'option 1',
-                'Option 2',
-                'Option three',
-            ),
-        ),
-        array(
-            'id' => 'resource-select',
-            'label' => 'resource-select',
-            'type' => 'select',
-            'options' => array(
-                'Select 1',
-                'select two',
-                'select 3',
-            ),
-        ),
-        array(
-            'id' => 'resource-text',
-            'label' => 'resource-text',
+            'id' => 'resource-cost',
+            'label' => 'What is the cost of this resource?',
             'type' => 'text',
         ),
         array(
-            'id' => 'resource-textarea',
-            'label' => 'resource-textarea',
+            'id' => 'resource-short-description',
+            'label' => 'Short description for resource list pages',
             'type' => 'textarea',
         ),
         array(
             'id' => 'resource-url',
-            'label' => 'resource-url',
+            'label' => 'Resource URL',
             'type' => 'url',
         ),
     );
