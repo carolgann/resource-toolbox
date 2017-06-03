@@ -187,7 +187,7 @@ class Resource_Toolbox_Admin {
     /**
      * Create a Custom Taxonomy to manage resource categories
      */
-    function create_custom_taxonomy_resource_category() {
+    public function create_custom_taxonomy_resource_category() {
 
         $labels = array(
             'name'                       => _x( 'Resource Categories', 'Taxonomy General Name', $this->plugin_name ),
@@ -222,6 +222,21 @@ class Resource_Toolbox_Admin {
         );
 
         register_taxonomy( 'resource_category', array( 'resource_toolbox' ), $args );
+
+    }
+
+    public function resource_comment_status( $data, $postarr ) {
+
+        if ( $data['post_type'] == 'resource_toolbox' ) {
+
+            // Check to see if post has an ID already, meaning it already exists
+            if ( !( $postarr['ID'] ) ) {
+                $data['comment_status'] = 'open';
+            }
+
+        }
+
+        return $data;
 
     }
 

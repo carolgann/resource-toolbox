@@ -16,4 +16,8 @@ global $post;
 
 $settings = get_option( 'resource_toolbox_single_resource_settings' );
 
+if ( $settings['enable_discussion'] === 1 ) {
+    echo 'One';
+}
+
 var_dump($settings);
