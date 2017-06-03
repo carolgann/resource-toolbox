@@ -92,7 +92,8 @@ class Resource_Toolbox_Settings {
 
         $defaults = array(
             'enable_excerpts'  => '0',
-            'enable_discussion'  => '0'
+            'enable_discussion'  => '0',
+            'enable_last_updated'  => '1',
         );
 
         update_option( 'resource_toolbox_single_resource_settings', $defaults );
@@ -108,6 +109,7 @@ class Resource_Toolbox_Settings {
 
         $defaults = array(
             'images_in_loop'  => '1',
+            'sort_loop'  => '1',
         );
 
         update_option( 'resource_toolbox_resource_loop_settings', $defaults );
@@ -307,6 +309,15 @@ class Resource_Toolbox_Settings {
             array( 'label_for' => 'enable_discussion', 'option_group' => 'resource_toolbox_single_resource_settings', 'option_id' => 'enable_discussion', 'option_description' => 'Enable Comments' )
         );
 
+        add_settings_field(
+            'enable_last_updated',
+            __( 'Should the date that this resource was last updated be displayed?', $this->plugin_name ),
+            array( $this, 'checkbox_input_callback'),
+            'resource_toolbox_single_resource_settings',
+            'single_resource_settings_section',
+            array( 'label_for' => 'enable_last_updated', 'option_group' => 'resource_toolbox_single_resource_settings', 'option_id' => 'enable_last_updated', 'option_description' => 'Display last updated date' )
+        );
+
         register_setting(
             'resource_toolbox_single_resource_settings',
             'resource_toolbox_single_resource_settings'
@@ -335,6 +346,15 @@ class Resource_Toolbox_Settings {
             'resource_toolbox_resource_loop_settings',
             'resource_loop_settings_section',
             array( 'label_for' => 'images_in_loop', 'option_group' => 'resource_toolbox_resource_loop_settings', 'option_id' => 'images_in_loop', 'option_description' => 'Display Images' )
+        );
+
+        add_settings_field(
+            'sort_loop',
+            __( 'Should resource categories be sortable?', $this->plugin_name ),
+            array( $this, 'checkbox_input_callback'),
+            'resource_toolbox_resource_loop_settings',
+            'resource_loop_settings_section',
+            array( 'label_for' => 'sort_loop', 'option_group' => 'resource_toolbox_resource_loop_settings', 'option_id' => 'sort_loop', 'option_description' => 'Allow Category Sorting' )
         );
 
         register_setting(

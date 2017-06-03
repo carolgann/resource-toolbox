@@ -175,6 +175,31 @@ class Resource_Toolbox_Public {
 	}
 
 	/**
+	 * Gets settings and metadata for single resources
+	 *
+	 * @since 	1.0.0
+	 * @param 	int		$post_id
+	 * @return 	array	$resource_data
+	 */
+	public static function get_single_resource_data( ) {
+
+		// Get all of the metadata attached to this single resource
+		$resource_meta = get_post_meta( get_the_ID() );
+
+		// Get the settings for single resources
+		$resource_settings = get_option( 'resource_toolbox_single_resource_settings' );
+
+		$resource_data = array(
+			'resource_meta' 	=> $resource_meta,
+			'resource_settings'	=> $resource_settings,
+			);
+
+		// var_dump($resource_data);
+		return $resource_data;
+
+	}
+
+	/**
 	 * Adds extra content before/after the post for single resources
 	 *
 	 * @param string $content
@@ -187,6 +212,7 @@ class Resource_Toolbox_Public {
 		if ( ! is_singular( 'resource_toolbox' ) || 'resource_toolbox' !== $post->post_type ) {
 			return $content;
 		}
+
 
 		ob_start();
 

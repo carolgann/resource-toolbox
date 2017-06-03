@@ -192,7 +192,7 @@ class Resource_Toolbox_Admin {
         $labels = array(
             'name'                       => _x( 'Resource Categories', 'Taxonomy General Name', $this->plugin_name ),
             'singular_name'              => _x( 'Resource Category', 'Taxonomy Singular Name', $this->plugin_name ),
-            'menu_name'                  => __( 'Resource Category', $this->plugin_name ),
+            'menu_name'                  => __( 'Resource Categories', $this->plugin_name ),
             'all_items'                  => __( 'All Categories', $this->plugin_name ),
             'parent_item'                => __( 'Parent Category', $this->plugin_name ),
             'parent_item_colon'          => __( 'Parent Category:', $this->plugin_name ),

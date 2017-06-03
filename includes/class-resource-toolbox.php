@@ -193,6 +193,7 @@ class Resource_Toolbox {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'the_content', $plugin_public, 'resource_content' );
+		// $this->loader->add_filter( 'resource_content_start', $plugin_public, 'get_single_resource_data', 99 );
 
 	}
 
