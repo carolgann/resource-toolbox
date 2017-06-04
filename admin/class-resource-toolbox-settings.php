@@ -77,6 +77,7 @@ class Resource_Toolbox_Settings {
     static function default_general_settings() {
 
         $defaults = array(
+            'archive_title' => 'Resources',
         );
 
         update_option( 'resource_toolbox_general_settings', $defaults );
@@ -253,21 +254,12 @@ class Resource_Toolbox_Settings {
         );
 
         add_settings_field(
-            'twitter_user',
-            __( 'Twitter Username', $this->plugin_name ),
+            'archive_title',
+            __( 'Main Resources Page Title', $this->plugin_name ),
             array( $this, 'text_input_callback'),
             'resource_toolbox_general_settings',
             'general_settings_section',
-            array( 'label_for' => 'twitter_user', 'option_group' => 'resource_toolbox_general_settings', 'option_id' => 'twitter_user' )
-        );
-
-        add_settings_field(
-            'twitter_exclude_retweets',
-            __( 'Exclude Retweets?', $this->plugin_name ),
-            array( $this, 'checkbox_input_callback'),
-            'resource_toolbox_general_settings',
-            'general_settings_section',
-            array( 'label_for' => 'twitter_exclude_retweets', 'option_group' => 'resource_toolbox_general_settings', 'option_id' => 'twitter_exclude_retweets', 'option_description' => 'Should retweets be excluded?' )
+            array( 'label_for' => 'archive_title', 'option_group' => 'resource_toolbox_general_settings', 'option_id' => 'archive_title' )
         );
 
         register_setting(

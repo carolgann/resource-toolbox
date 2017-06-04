@@ -52,6 +52,44 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
     }
 
     /**
+     * Modify page title
+     *
+     * Modifies output of page titles for resources
+     *
+     * @since 1.0.0
+     *
+     * @param   string  $title   Title of archive page
+     * @return  string              Template file that should be loaded.
+     */
+    function archive_page_title( $title ) {
+
+        // If there is an archive title setting, display that
+        if ( null !== get_option( 'resource_toolbox_general_settings' ) ) {
+
+            $settings = get_option( 'resource_toolbox_general_settings' );
+            $archive_title = $settings['archive_title'];
+
+        } else {
+
+            $archive_title = $title;
+
+        }
+
+        // If the page is a term archive, append the term name
+        if ( is_tax( 'resource_category') ) {
+
+            // Get the term object for this resource category
+            $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+
+            $archive_title = $archive_title . ' - ' . $term->name;
+
+        }
+
+        return $archive_title;
+
+    }
+
+    /**
      * Template loader.
      *
      * The template loader will check if WP is loading a template
@@ -66,8 +104,6 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
      * @return  string              Template file that should be loaded.
      */
     function template_loader( $template ) {
-
-// clearstatcache();
 
         $file = '';
 
@@ -106,7 +142,7 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
     public function locate_resource_template_part( $template_name, $template_path = '', $default_path = '' ) {
 
         // Make sure we're passing a template name
-        if ( $template_name == null ) {
+        if ( null == $template_name ) {
             return;
         }
 
@@ -179,7 +215,9 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
         $resource_meta = get_post_meta( get_the_ID() );
 
         // Get the settings for single resources
-        $resource_settings = get_option( 'resource_toolbox_single_resource_settings' );
+        if ( null !== get_option( 'resource_toolbox_single_resource_settings' ) ) {
+            $resource_settings = get_option( 'resource_toolbox_single_resource_settings' );
+        }
 
         $resource_data = array(
             'resource_meta'     => $resource_meta,

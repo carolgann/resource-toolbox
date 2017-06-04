@@ -237,6 +237,7 @@ class Resource_Toolbox {
 		$plugin_templates = new Resource_Toolbox_Templates( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'template_include', $plugin_templates, 'template_loader' );
+		$this->loader->add_action( 'get_the_archive_title', $plugin_templates, 'archive_page_title' );
 		$this->loader->add_filter( 'the_content', $plugin_templates, 'resource_content' );
 
 	}
