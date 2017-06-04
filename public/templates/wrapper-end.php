@@ -29,7 +29,7 @@ switch ( $template ) {
         get_sidebar( 'content' );
         break;
     case 'twentyfifteen' :
-        echo '</div></div>';
+        echo '</div></article></div></div>';
         break;
     case 'twentysixteen' :
         echo '</main></div>';
