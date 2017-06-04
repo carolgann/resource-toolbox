@@ -11,7 +11,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 
 // Get the settings and metadata for this resource
-$resource_data = Resource_Toolbox_Public::get_single_resource_data();
+$resource_data = Resource_Toolbox_Templates::get_single_resource_data();
 
 echo '<div class="resource-meta">';
 

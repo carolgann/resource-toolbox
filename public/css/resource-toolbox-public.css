@@ -30,3 +30,30 @@
     text-decoration: none;
     border: 1px solid;
 }
+
+#resource-loop {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+#resource-loop .single-resource {
+    width: calc(100% / 3);
+    padding: 1em;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#resource-loop .single-resource .single-resource-title {
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+#resource-loop .single-resource .resource-terms {
+    margin-top: 0;
+}
+
+#resource-loop .single-resource .resource-terms .resource-term {
+    font-size: 0.75em;
+}

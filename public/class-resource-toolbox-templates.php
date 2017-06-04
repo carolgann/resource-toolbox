@@ -71,7 +71,7 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
 
         $file = '';
 
-        if ( is_post_type_archive( 'resource_toolbox' ) ) {
+        if ( is_post_type_archive( 'resource_toolbox' ) || is_tax( 'resource_category' ) ) {
 
             $file = 'resource-loop.php';
 
@@ -167,22 +167,6 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
     }
 
     /**
-     * Gets template part (for templates in loops).
-     *
-     * @since 1.0.0
-     * @param string      $slug
-     * @param string      $name (default: '')
-     * @param string      $template_path (default: 'single-resource')
-     * @param string|bool $default_path (default: '') False to not load a default
-     */
-    public function load_resource_template_part( $slug, $name = '' ) {
-
-        $load = new Resource_Toolbox_Templates();
-        $load->get_resource_template_part( $slug );
-
-    }
-
-    /**
      * Gets settings and metadata for single resources
      *
      * @since   1.0.0
@@ -220,7 +204,7 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
 
             return $this->resource_single_content();
 
-        } elseif ( is_post_type_archive( 'resource_toolbox' ) ) {
+        } elseif ( is_post_type_archive( 'resource_toolbox' ) || is_tax( 'resource_category' ) ) {
 
             return $this->resource_loop_single_content();
 

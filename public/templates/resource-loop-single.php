@@ -13,12 +13,27 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Don't allow direct access
 // Get the settings and metadata for this resource
 $resource_data = Resource_Toolbox_Templates::get_single_resource_data();
 
-echo '<div class="single-resource">';
+?>
 
-    echo '<div class="resource-meta">';
+<div class="single-resource">
 
-        echo '<div class="resource-terms">';
+    <a href="<?php the_permalink(); ?>" rel="bookmark">
 
+        <div class="single-resource-image">
+            <?php the_post_thumbnail(); ?>
+        </div>
+
+        <div class="single-resource-title">
+            <?php the_title(); ?>
+        </div>
+
+    </a>
+
+    <div class="resource-meta">
+
+        <div class="resource-terms">
+
+            <?php
             // Display Free badge if this resource is marked as free
             if ( isset( $resource_data ) && true == $resource_data['resource_meta']['resource_information_free-resource'][0] ) {
                 echo '<a class="resource-term" href="#">Free</a>';
@@ -34,21 +49,11 @@ echo '<div class="single-resource">';
                 }
 
             }
+            ?>
 
-        echo '</div>'; // <!-- .resource-terms -->
+        </div> <!-- .resource-terms -->
 
-    echo '</div>'; // <!-- .resource-meta -->
+    </div> <!-- .resource-meta -->
 
-    // Display description of resource
-    echo '<div class="resource-description">';
-
-        // Display pricing of resource
-        if ( isset( $resource_data ) && '' !== $resource_data['resource_meta']['resource_information_resource-short-description'][0] ) {
-            $description = $resource_data['resource_meta']['resource_information_resource-short-description'][0];
-            echo "<div class='resource-description'>{$description}</div>";
-        }
-
-    echo '</div>'; // <!-- .resource-description -->
-
-echo '</div>'; // <!-- .single-resource -->
+</div> <!-- .single-resource -->
 

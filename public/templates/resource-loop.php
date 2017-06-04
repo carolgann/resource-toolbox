@@ -19,11 +19,17 @@ $load->get_resource_template_part( 'wrapper-start' );
 
     if ( have_posts() ) :
 
-        while ( have_posts() ) : the_post();
+        echo '<h2 class="entry-title archive-title">' . get_the_archive_title() . '</h2>';
 
-            the_content();
+        echo '<div id="resource-loop">';
 
-        endwhile;
+            while ( have_posts() ) : the_post();
+
+                the_content();
+
+            endwhile;
+
+        echo '</div>';
 
     endif;
 
