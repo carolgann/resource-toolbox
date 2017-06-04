@@ -61,7 +61,7 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
      * @param   string  $title   Title of archive page
      * @return  string              Template file that should be loaded.
      */
-    function archive_page_title( $title ) {
+    public function archive_page_title( $title ) {
 
         // If there is an archive title setting, display that
         if ( null !== get_option( 'resource_toolbox_general_settings' ) ) {
@@ -103,7 +103,7 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
      * @param   string  $template   Template file that is being loaded.
      * @return  string              Template file that should be loaded.
      */
-    function template_loader( $template ) {
+    public function template_loader( $template ) {
 
         $file = '';
 

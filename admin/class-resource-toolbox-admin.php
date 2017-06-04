@@ -120,11 +120,11 @@ class Resource_Toolbox_Admin {
             'author'
             );
 
-        if ( isset( $resource_options['enable_excerpts'] ) && $resource_options['enable_excerpts'] === '1' ) {
+        if ( isset( $resource_options['enable_excerpts'] ) && '1' === $resource_options['enable_excerpts'] ) {
             $supports[] = 'excerpt';
         }
 
-        if ( isset( $resource_options['enable_discussion'] ) && $resource_options['enable_discussion'] === '1' ) {
+        if ( isset( $resource_options['enable_discussion'] ) && '1' === $resource_options['enable_discussion'] ) {
             $supports[] = 'comments';
         }
 
