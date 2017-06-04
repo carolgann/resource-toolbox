@@ -147,13 +147,13 @@ class Resource_Toolbox_Settings {
                 );
 
             // Determine which tab we're on
-            if( isset( $_GET[ 'tab' ] ) ) {
+            if ( isset( $_GET[ 'tab' ] ) ) {
                 $active_tab = $_GET[ 'tab' ];
-            } else if( $active_tab == $tabs['general']['slug'] ) {
+            } else if ( $active_tab == $tabs['general']['slug'] ) {
                 $active_tab = $tabs['general']['slug'];
-            } else if( $active_tab == $tabs['single_resource']['slug'] ) {
+            } else if ( $active_tab == $tabs['single_resource']['slug'] ) {
                 $active_tab = $tabs['single_resource']['slug'];
-            } else if( $active_tab == $tabs['resource_loop']['slug'] ) {
+            } else if ( $active_tab == $tabs['resource_loop']['slug'] ) {
                 $active_tab = $tabs['resource_loop']['slug'];
             } else {
                 $active_tab = $tabs['general']['slug'];
@@ -179,17 +179,17 @@ class Resource_Toolbox_Settings {
             <form method="post" action="options.php">
                 <?php
 
-                if( $active_tab == $tabs['general']['slug'] ) {
+                if ( $active_tab == $tabs['general']['slug'] ) {
 
                     settings_fields( 'resource_toolbox_general_settings' );
                     do_settings_sections( 'resource_toolbox_general_settings' );
 
-                } elseif( $active_tab == $tabs['single_resource']['slug'] ) {
+                } elseif ( $active_tab == $tabs['single_resource']['slug'] ) {
 
                     settings_fields( 'resource_toolbox_single_resource_settings' );
                     do_settings_sections( 'resource_toolbox_single_resource_settings' );
 
-                } elseif( $active_tab == $tabs['resource_loop']['slug'] ) {
+                } elseif ( $active_tab == $tabs['resource_loop']['slug'] ) {
 
                     settings_fields( 'resource_toolbox_resource_loop_settings' );
                     do_settings_sections( 'resource_toolbox_resource_loop_settings' );
@@ -405,11 +405,11 @@ class Resource_Toolbox_Settings {
         // Loop through each of the incoming options
         foreach( $input as $key => $value ) {
             // Check to see if the current option has a value. If so, process it.
-            if( isset( $input[$key] ) ) {
+            if ( isset( $input[$key] ) ) {
                 // Strip all HTML and PHP tags and properly handle quoted strings
                 $output[$key] = strip_tags( stripslashes( $input[ $key ] ) );
             }
-            // elseif( $input[$key] === NULL ) {
+            // elseif ( $input[$key] === NULL ) {
             //  $output[$key] = '';
             // }
         } // end foreach
