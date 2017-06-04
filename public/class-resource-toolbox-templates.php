@@ -90,6 +90,27 @@ class Resource_Toolbox_Templates extends Resource_Toolbox_Public {
     }
 
     /**
+     * @TODO
+     * Sets display of comment form
+     *
+     * Removes comment form if comments are not enabled for resources
+     *
+     * @since 1.0.0
+     *
+     */
+    public function display_comments() {
+
+        // If there is an archive title setting, display that
+        if ( null !== get_option( 'resource_toolbox_single_resource_settings' ) ) {
+
+            $settings = get_option( 'resource_toolbox_single_resource_settings' );
+            $discussion = $settings['enable_discussion'];
+
+        }
+
+    }
+
+    /**
      * Template loader.
      *
      * The template loader will check if WP is loading a template
